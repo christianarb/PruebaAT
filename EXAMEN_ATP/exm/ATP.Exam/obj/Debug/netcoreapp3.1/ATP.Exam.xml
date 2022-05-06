@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ATP.Exam</name>
+    </assembly>
+    <members>
+        <member name="M:ATP.Exam.Controllers.BusinessController.GetEmployees">
+            <summary>
+            Obtiene los empleados existentes.
+            </summary>
+            <remarks>Lista los empleados de la base de datos.</remarks>
+        </member>
+        <member name="M:ATP.Exam.Controllers.BusinessController.GetProjects">
+            <summary>
+            Obtiene los proyectos existentes.
+            </summary>
+            <remarks>Lista los proyectos de la base de datos.</remarks>
+        </member>
+        <member name="M:ATP.Exam.Controllers.BusinessController.GetEmployeesbyProject(System.Guid)">
+            <summary>
+            Obtiene empleados segun el projectId de su relacion.
+            </summary>
+            <remarks>Lista los empleados segun el projectId de la base de datos.</remarks>
+        </member>
+        <member name="M:ATP.Exam.Controllers.BusinessController.SaveRelationProjectEmployee(ATP.Exam.ViewModels.ProjectEmployeeViewModel)">
+            <summary>
+            Guardar/Actualizar relacion de Proyecto-Empleado.
+            </summary>
+            <remarks>Registra/Actualiza los registros en la base de datos.</remarks>
+        </member>
+    </members>
+</doc>

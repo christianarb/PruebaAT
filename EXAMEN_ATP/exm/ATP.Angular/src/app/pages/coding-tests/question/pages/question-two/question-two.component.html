@@ -1,0 +1,37 @@
+<p-card>
+  <p-toast></p-toast>
+  <div class="card shadow">
+    <div class="card-header bg-white">
+      Formulario
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formProjectEmployee" (ngSubmit)="saveForm()">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="projectid" class="form-label">Proyecto</label>
+                <p-dropdown [options]="combo2" optionLabel="name" formControlName="projectId" styleClass="w-100" id="projectid"></p-dropdown>
+              </div>
+              <div class="col-md-6">
+                <label for="employeeid" class="form-label">Empleado</label>
+                <p-dropdown [options]="combo1" optionLabel="name" formControlName="employeeId" styleClass="w-100" id="employeeid"></p-dropdown>
+              </div>
+              <div class="col-md-4">
+                <label for="role" class="form-label">Rol</label>
+                <input type="text" pInputText class="w-100" formControlName="role" placeholder="Rol" id="role">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="d-flex justify-content-end">
+              <button pButton icon="pi pi-save" type="submit" label="Guardar" class="p-button-sm mt-3"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</p-card>
