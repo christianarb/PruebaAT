@@ -95,6 +95,19 @@ namespace ATP.Exam.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpPost("saveProject")]
+        public IActionResult SaveProject([FromBody] ProjectViewModel projectVM)
+        {
+            try
+            {
+                Project rs = iBusinessRepository.SaveProject(projectVM);
+                return Ok(rs);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
 
     }
 }

@@ -14,6 +14,7 @@ namespace ATP.Exam.Repositories
         public List<Project> GetProjects();
         public Project GetEmployeesbyProject(Guid projectId);
         public Project SaveRelationProjectEmployee(ProjectEmployeeViewModel projectEmployeeVM);
+        public Project SaveProject(ProjectViewModel projectVM);
     }
 
     public class BusinessRepository : IBusinessRepository
@@ -86,19 +87,83 @@ namespace ATP.Exam.Repositories
             }
             _context.SaveChanges();
 
-            Project project = _context.Project.
-                                Where(x => x.projectId == projectEmployee.projectId).
-                                ToList().
-                                FirstOrDefault();
-
-            List<ProjectEmployee> employees = _context.ProjectEmloyee
-                                    .Where(x => x.projectId == projectEmployee.projectId)
-                                    .Include(x => x.Employee)
-                                    .ToList();
-
-            project.ProjectEmloyees = employees;
+            Project project = GetEmployeesbyProject(projectEmployee.projectId);
 
             return project;
         }
+        public Project SaveProject(ProjectViewModel projectVM)
+        {
+            Project project = new Project();
+
+            if (projectVM.projectId == null)
+            {
+                project = new Project()
+                {
+                    projectId = Guid.NewGuid(),
+                    title = projectVM.title,
+                    dateInit = projectVM.dateInit,
+                    dateEnd = projectVM.dateEnd,
+                    cost = projectVM.cost,
+                    month = projectVM.month,
+                    createdDate = DateTime.Today
+                };
+
+                _context.Project.Add(project);
+            }
+            else
+            {
+                project = _context.Project
+                                  .Where(x => x.projectId == projectVM.projectId)
+                                  .FirstOrDefault();
+
+                project.projectId = projectVM.projectId;
+                project.title = projectVM.title;
+                project.dateInit = projectVM.dateInit;
+                project.dateEnd = projectVM.dateEnd;
+                project.cost = projectVM.cost;
+                project.month = projectVM.month;
+                _context.Project.Update(project);
+            }
+            _context.SaveChanges();
+
+            return project;
+        }
+        //public Employee SaveEmployee(Project projectVM)
+        //{
+        //    Project project = new Project();
+
+        //    if (projectVM.projectId == null)
+        //    {
+        //        project = new Project()
+        //        {
+        //            projectId = Guid.NewGuid(),
+        //            title = projectVM.title,
+        //            dateInit = projectVM.dateInit,
+        //            dateEnd = projectVM.dateEnd,
+        //            cost = projectVM.cost,
+        //            month = projectVM.month,
+        //            createdDate = projectVM.createdDate
+        //        };
+
+        //        _context.Project.Add(project);
+        //    }
+        //    else
+        //    {
+        //        project = _context.Project
+        //                          .Where(x => x.projectId == projectVM.projectId)
+        //                          .FirstOrDefault();
+
+        //        project.projectId = projectVM.projectId;
+        //        project.title = projectVM.title;
+        //        project.dateInit = projectVM.dateInit;
+        //        project.dateEnd = projectVM.dateEnd;
+        //        project.cost = projectVM.cost;
+        //        project.month = projectVM.month;
+        //        _context.Project.Update(project);
+        //    }
+        //    _context.SaveChanges();
+
+        //    return project;
+        //}
     }
 }
