@@ -15,6 +15,7 @@ namespace ATP.Exam.Repositories
         public Project GetEmployeesbyProject(Guid projectId);
         public Project SaveRelationProjectEmployee(ProjectEmployeeViewModel projectEmployeeVM);
         public Project SaveProject(ProjectViewModel projectVM);
+        public Employee SaveEmployee(EmployeeViewModel employeetVM);
     }
 
     public class BusinessRepository : IBusinessRepository
@@ -128,42 +129,42 @@ namespace ATP.Exam.Repositories
 
             return project;
         }
-        //public Employee SaveEmployee(Project projectVM)
-        //{
-        //    Project project = new Project();
+        public Employee SaveEmployee(EmployeeViewModel employeetVM)
+        {
+            Employee employee = new Employee();
 
-        //    if (projectVM.projectId == null)
-        //    {
-        //        project = new Project()
-        //        {
-        //            projectId = Guid.NewGuid(),
-        //            title = projectVM.title,
-        //            dateInit = projectVM.dateInit,
-        //            dateEnd = projectVM.dateEnd,
-        //            cost = projectVM.cost,
-        //            month = projectVM.month,
-        //            createdDate = projectVM.createdDate
-        //        };
+            if (employeetVM.employeeId == null)
+            {
+                employee = new Employee()
+                {
+                    employeeId = Guid.NewGuid(),
+                    name = employeetVM.name,
+                    birthDate = employeetVM.birthDate,
+                    entryDate = employeetVM.entryDate,
+                    job = employeetVM.job,
+                    salary = employeetVM.salary,
+                    createdDate = DateTime.Today
+                };
 
-        //        _context.Project.Add(project);
-        //    }
-        //    else
-        //    {
-        //        project = _context.Project
-        //                          .Where(x => x.projectId == projectVM.projectId)
-        //                          .FirstOrDefault();
+                _context.Employee.Add(employee);
+            }
+            else
+            {
+                employee = _context.Employee
+                                  .Where(x => x.employeeId == employeetVM.employeeId)
+                                  .FirstOrDefault();
 
-        //        project.projectId = projectVM.projectId;
-        //        project.title = projectVM.title;
-        //        project.dateInit = projectVM.dateInit;
-        //        project.dateEnd = projectVM.dateEnd;
-        //        project.cost = projectVM.cost;
-        //        project.month = projectVM.month;
-        //        _context.Project.Update(project);
-        //    }
-        //    _context.SaveChanges();
+                employee.employeeId = employeetVM.employeeId;
+                employee.name = employeetVM.name;
+                employee.birthDate = employeetVM.birthDate;
+                employee.entryDate = employeetVM.entryDate;
+                employee.job = employeetVM.job;
+                employee.salary = employeetVM.salary;
+                _context.Employee.Update(employee);
+            }
+            _context.SaveChanges();
 
-        //    return project;
-        //}
+            return employee;
+        }
     }
 }

@@ -95,6 +95,10 @@ namespace ATP.Exam.Controllers
                 return BadRequest(ex);
             }
         }
+        /// <summary>
+        /// Guardar/Actualizar de Proyectos.
+        /// </summary>
+        /// <remarks>Registra/Actualiza los registros en la base de datos.</remarks>
         [HttpPost("saveProject")]
         public IActionResult SaveProject([FromBody] ProjectViewModel projectVM)
         {
@@ -108,6 +112,22 @@ namespace ATP.Exam.Controllers
                 return BadRequest(ex);
             }
         }
-
+        /// <summary>
+        /// Guardar/Actualizar de Empleados.
+        /// </summary>
+        /// <remarks>Registra/Actualiza los registros en la base de datos.</remarks>
+        [HttpPost("saveEmployee")]
+        public IActionResult SaveEmployee([FromBody] EmployeeViewModel employeeVM)
+        {
+            try
+            {
+                Employee rs = iBusinessRepository.SaveEmployee(employeeVM);
+                return Ok(rs);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

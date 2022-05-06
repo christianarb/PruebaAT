@@ -28,5 +28,17 @@
             </summary>
             <remarks>Registra/Actualiza los registros en la base de datos.</remarks>
         </member>
+        <member name="M:ATP.Exam.Controllers.BusinessController.SaveProject(ATP.Exam.ViewModels.ProjectViewModel)">
+            <summary>
+            Guardar/Actualizar de Proyectos.
+            </summary>
+            <remarks>Registra/Actualiza los registros en la base de datos.</remarks>
+        </member>
+        <member name="M:ATP.Exam.Controllers.BusinessController.SaveEmployee(ATP.Exam.ViewModels.EmployeeViewModel)">
+            <summary>
+            Guardar/Actualizar de Empleados.
+            </summary>
+            <remarks>Registra/Actualiza los registros en la base de datos.</remarks>
+        </member>
     </members>
 </doc>
